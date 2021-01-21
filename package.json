@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/huntdavid175/notify-me/issues"
   },
-  "homepage": "https://github.com/huntdavid175/notify-me#readme"
+  "homepage": "https://github.com/huntdavid175/notify-me#readme",
+  "dependencies": {
+    "request": "^2.88.2",
+    "twilio": "^3.55.0"
+  }
 }
