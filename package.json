@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/huntdavid175/notify-me#readme",
   "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "qs": "^6.9.6",
     "request": "^2.88.2",
     "twilio": "^3.55.0"
   }
