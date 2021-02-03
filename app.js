@@ -10,9 +10,10 @@ const app = express();
 const accountSid = process.env.ACCOUNT_SID;
 const accountToken = process.env.ACCOUNT_TOKEN;
 const weatherAPIKEY = process.env.API_TOKEN;
+const url = `https://api.openweathermap.org/data/2.5/onecall?lat=51.759048&lon=19.458599&exclude=daily,current,minutely,alerts&appid=${weatherAPIKEY}`
 
 const runApp = () => {
-  request(`https://api.openweathermap.org/data/2.5/onecall?lat=51.759048&lon=19.458599&exclude=daily,current,minutely,alerts&appid=${weatherAPIKEY}`, {json: true}, (error, response, body)=> {
+  request(url, {json: true}, (error, response, body)=> {
   if(error) {
     console.log(error)
   }
