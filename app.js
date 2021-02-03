@@ -1,16 +1,18 @@
+const express = require('express');
+const cron = require('node-cron');
 const Twilio = require("twilio");
 const request = require("request");
 require('dotenv').config();
+
+const app = express();
 
 
 const accountSid = process.env.ACCOUNT_SID;
 const accountToken = process.env.ACCOUNT_TOKEN;
 const weatherAPIKEY = process.env.API_TOKEN;
 
-
-
-
-request(`https://api.openweathermap.org/data/2.5/onecall?lat=51.759048&lon=19.458599&exclude=daily,current,minutely,alerts&appid=${weatherAPIKEY}`, {json: true}, (error, response, body)=> {
+const runApp = () => {
+  request(`https://api.openweathermap.org/data/2.5/onecall?lat=51.759048&lon=19.458599&exclude=daily,current,minutely,alerts&appid=${weatherAPIKEY}`, {json: true}, (error, response, body)=> {
   if(error) {
     console.log(error)
   }
@@ -23,6 +25,10 @@ request(`https://api.openweathermap.org/data/2.5/onecall?lat=51.759048&lon=19.45
     sendMessage()
   }
 })
+}
+
+
+
 
 
 
@@ -38,3 +44,11 @@ client.messages
   })
   .then((message) => console.log(message.sid));
 }
+
+ cron.schedule('0 6 * * *', () => {
+   runApp()
+ }, {
+   scheduled:true,
+  timezone: "Europe/London" });
+
+app.listen(3000);
